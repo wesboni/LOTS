@@ -1,0 +1,931 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+/* =============================================================================
+   LAYOUT CONFIGURATION
+   ============================================================================= */
+.main-layout {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.main-layout.individual-monthly-view {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.individual-monthly-view .monthly-calendar-container {
+  order: 2;
+  flex: 1;
+  min-width: 0;
+  border: 1px solid #ccc;
+  background: white;
+  z-index: 1;
+}
+
+.individual-monthly-view .summary-totals {
+  order: 1;
+  width: 420px;
+  min-width: 420px;
+  flex-basis: 420px;
+  max-width: 420px;
+  background-color: #f9f9f9;
+  border-right: 1px solid #ccc;
+  border-left: none;
+  z-index: 2;
+}
+
+.individual-monthly-view .history-grid-container {
+  order: 3;
+  width: 900px;
+  min-width: 900px;
+  border-left: 1px solid #ccc;
+  background-color: #ffffff !important;
+  overflow-y: auto;
+  overflow-x: auto;
+  max-height: 90vh;
+}
+
+.history-grid-container table {
+  width: 100%;
+  min-width: 100%;
+  border: 1px solid #ccc;
+  /* Outer border */
+}
+
+.history-grid-container th,
+.history-grid-container td {
+  border: 1px solid #ccc;
+  /* Inner cell borders */
+}
+
+.comment-col {
+  min-width: 150px;
+  max-width: 200px;
+  white-space: normal;
+}
+
+.actions-col {
+  min-width: 175px;
+  width: auto;
+}
+
+/* =============================================================================
+   ACTION BUTTONS (Small buttons in cells)
+   ============================================================================= */
+.header-actions {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.action-btn {
+  padding: 1px 4px !important;
+  font-size: 10px !important;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+  font-weight: bold;
+  color: white;
+  white-space: nowrap;
+  height: 20px;
+}
+
+/* Moved disabled styles to end of file to ensure override */
+
+.action-btn.add {
+  background-color: #28a745;
+  border-color: #218838;
+}
+
+/* =============================================================================
+   GRID TOOLBAR (Top controls for Add/Update/Delete)
+   ============================================================================= */
+.grid-toolbar {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  background-color: #f1f1f1;
+}
+
+.toolbar-btn {
+  padding: 5px 15px;
+  border: 1px solid #ccc;
+  background-color: #e0e0e0;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.toolbar-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.toolbar-btn.add-btn {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.toolbar-btn.update-btn {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.toolbar-btn.delete-btn {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.toolbar-btn.approve-btn {
+  background-color: #cce5ff;
+  color: #004085;
+  border-color: #b8daff;
+}
+
+/* MARRIAGE */
+.row-marriage {
+  background-color: #f8d7da;
+}
+
+/* Light Red/Pink */
+.row-marriage-planned {
+  background-color: #fce8e9;
+  border: 1px dashed #dc3545;
+}
+
+.marriage-bg {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.marriage-planned-bg {
+  background-color: #fce8e9;
+  color: #721c24;
+  border: 1px dashed #dc3545;
+}
+
+/* ONCALL */
+/* Done: Light Purple */
+.row-oncall-done {
+  background-color: #8E24AA !important;
+  color: white !important;
+}
+
+.oncall-done-bg {
+  background-color: #8E24AA !important;
+  color: white !important;
+}
+
+/* Planned: Darker Purple (but still light enough for text, or change text color) */
+.row-oncall-planned {
+  background-color: #4A148C !important;
+  color: white !important;
+  border: 1px dashed #7B1FA2;
+}
+
+.oncall-planned-bg {
+  background-color: #d1c4e9;
+  color: #311b92;
+  border: 1px dashed #512da8;
+}
+
+.toolbar-btn.add-btn.paid {
+  background-color: #e3f2fd;
+  color: #0d47a1;
+}
+
+.paid-planned {
+  background-color: #000080;
+  /* Navy Blue */
+  color: #ffffff;
+}
+
+.sick {
+  background-color: #ec9408;
+  /* Orange */
+  color: white;
+}
+
+.sick-planned {
+  background-color: #8a5704;
+  /* Darker Orange */
+  color: white;
+}
+
+.marriage {
+  background-color: #ff8c00;
+  /* Orange */
+  color: white;
+}
+
+.marriage-planned {
+  background-color: #995400;
+  /* Darker Orange */
+  color: white;
+}
+
+.toil {
+  background-color: #28a745;
+  /* Standard Green */
+  color: white;
+}
+
+.paid {
+  background-color: #190be2;
+  /* Standard Blue */
+  color: white;
+}
+
+.overtime {
+  background-color: #f01010;
+  /* Red */
+  color: white;
+}
+
+.toil-planned {
+  background-color: #006400;
+  /* Dark Green */
+  color: #ffffff;
+}
+
+/* --- Pending State Highlights --- */
+/* Rows or slots that are unapproved/modified appear in this color */
+tr.Added,
+tr.Updated,
+tr.Deleted {
+  background-color: #fff3cd !important;
+  /* Beige / Light Yellow */
+}
+
+/* Ensure deleted text is maybe crossed out? Or just yellow as requested. User said "background color yellow". */
+
+.row-action-btn {
+  font-size: 10px;
+  padding: 2px 4px;
+  margin-right: 2px;
+  cursor: pointer;
+}
+
+
+.action-btn.update {
+  background-color: #fd7e14;
+  border-color: #e67010;
+}
+
+.action-btn.delete {
+  background-color: #dc3545;
+  border-color: #c82333;
+}
+
+.action-btn.approve-btn {
+  background-color: #6f42c1 !important;
+  border-color: #59359a !important;
+}
+
+/* ================= Row Actions ================= */
+.row-actions-cell {
+  white-space: nowrap;
+}
+
+.row-action-btn {
+  padding: 2px 6px;
+  font-size: 0.7rem;
+  margin-right: 2px;
+  cursor: pointer;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  border-radius: 2px;
+}
+
+.row-action-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.row-action-btn.commit {
+  color: green;
+  border-color: green;
+}
+
+.row-action-btn.rollback {
+  color: orange;
+  border-color: orange;
+}
+
+.row-action-btn.cancel {
+  color: red;
+  border-color: red;
+}
+
+tr.row-added,
+tr.row-updated,
+tr.row-deleted {
+  background-color: #ffffcc !important;
+  color: black !important;
+}
+
+tr.row-deleted td {
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+
+/* ================= Inputs ================= */
+.grid-input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 4px;
+  font-size: 0.8rem;
+  border: 1px solid #ccc;
+  border-radius: 2px;
+}
+
+.grid-select {
+  width: 100%;
+  padding: 4px;
+  font-size: 0.8rem;
+}
+
+.grid-checkbox {
+  cursor: pointer;
+}
+
+/* =============================================================================
+   SUMMARY TOTALS PANEL
+   ============================================================================= */
+.summary-totals {
+  width: 100%;
+  background-color: #f5f5f5;
+  border-bottom: 1px solid #ccc;
+  padding: 6px 10px 8px;
+}
+
+.summary-totals-grid {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #ccc;
+  gap: 2px;
+}
+
+.summary-totals-row {
+  display: grid;
+}
+
+.summary-totals-cell {
+  border: 1px solid #ccc;
+  padding: 3px 4px;
+  text-align: right;
+  font-size: 0.7rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.summary-totals-cell:first-child {
+  white-space: normal;
+  text-align: left;
+  line-height: 1.1;
+  display: flex;
+  align-items: center;
+}
+
+/* =============================================================================
+   COLOR CODING SYSTEM
+   ============================================================================= */
+/* Header/Cell Colors */
+.header-cell {
+  background-color: #555;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.7rem;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4px 6px;
+}
+
+/* ================= Row & Cell Colors ================= */
+/* Base Colors */
+/* PAID/Taken = #190be2 (Standard Blue) */
+/* PAID/Planned = #000080 (Navy Blue) */
+/* TOIL/Taken = #28a745 (Standard Green) */
+/* TOIL/Planned = #006400 (Dark Green) */
+/* OVERTIME = Red */
+/* SICK/MARRIAGE = Orange */
+
+/* --- History Grid Rows --- */
+
+/* --- Base Type Classes (Used in Headers/Summary) --- */
+/* --- Standalone Row Bg Support --- */
+.paid-taken-bg,
+.header-cell.paid,
+.monthly-calendar-cell-grid-column-slot.paid,
+.monthly-calendar-cell-grid-column-slot.paid-taken-bg,
+td.paid {
+  background-color: #190be2 !important;
+  color: white !important;
+}
+
+.toil-taken-bg,
+.header-cell.toil,
+.monthly-calendar-cell-grid-column-slot.toil,
+.monthly-calendar-cell-grid-column-slot.toil-taken-bg,
+td.toil {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+.header-cell.overtime,
+.monthly-calendar-cell-grid-column-slot.overtime,
+.monthly-calendar-cell-grid-column-slot.overtime-bg,
+td.overtime {
+  background-color: #f01010;
+  color: white;
+}
+
+.sick-bg,
+.header-cell.sick,
+.monthly-calendar-cell-grid-column-slot.sick,
+.monthly-calendar-cell-grid-column-slot.sick-bg,
+td.sick {
+  background-color: #00BCD4 !important;
+  /* Cyan */
+  color: white !important;
+  /* Keep white text for contrast, or check if black is better? Cyan usually works with white or black. Let's try white first as standard. */
+}
+
+.oncall-done-bg {
+  background-color: #8E24AA !important;
+  /* Light Purple */
+  color: white !important;
+}
+
+.oncall-planned-bg {
+  background-color: #4A148C !important;
+  /* Dark Purple */
+  color: white !important;
+}
+
+.header-cell.sick-planned,
+.monthly-calendar-cell-grid-column-slot.sick-planned,
+.monthly-calendar-cell-grid-column-slot.sick-planned-bg,
+td.sick-planned {
+  background-color: #8a5704;
+  color: white;
+}
+
+.header-cell.marriage,
+.monthly-calendar-cell-grid-column-slot.marriage,
+.monthly-calendar-cell-grid-column-slot.marriage-bg,
+td.marriage {
+  background-color: #ff8c00;
+  color: white;
+}
+
+.header-cell.marriage-planned,
+.monthly-calendar-cell-grid-column-slot.marriage-planned,
+.monthly-calendar-cell-grid-column-slot.marriage-planned-bg,
+td.marriage-planned {
+  background-color: #995400;
+  color: white;
+}
+
+.header-cell.oncall-done-bg,
+.monthly-calendar-cell-grid-column-slot.oncall-done-bg,
+td.oncall-done-bg,
+.header-cell.oncall-done,
+td.oncall-done {
+  background-color: #8E24AA;
+  /* Strong Purple */
+  color: white;
+}
+
+.header-cell.oncall-planned-bg,
+.monthly-calendar-cell-grid-column-slot.oncall-planned-bg,
+td.oncall-planned-bg,
+.header-cell.oncall-planned,
+td.oncall-planned {
+  background-color: #4A148C;
+  /* Darker Strong Purple */
+  color: white;
+  border: 1px dashed #7B1FA2;
+}
+
+/* Explicit PLANNED statuses for PAID/TOIL/OVERTIME not covered above */
+.monthly-calendar-cell-grid-column-slot.paid-planned-bg {
+  background-color: #000080;
+  /* Navy Blue */
+  color: white;
+}
+
+.monthly-calendar-cell-grid-column-slot.toil-planned-bg {
+  background-color: #006400;
+  /* Dark Green */
+  color: white;
+}
+
+/* --- Row Colors (Strict) --- */
+tr.row-paid-taken,
+tr.row-paid-taken td {
+  background-color: #190be2 !important;
+  color: white !important;
+}
+
+tr.row-paid-planned,
+tr.row-paid-planned td {
+  background-color: #000080 !important;
+  color: white !important;
+}
+
+tr.row-toil-taken,
+tr.row-toil-taken td {
+  background-color: #28a745 !important;
+  color: white !important;
+}
+
+tr.row-toil-planned,
+tr.row-toil-planned td {
+  background-color: #006400 !important;
+  color: white !important;
+}
+
+tr.row-overtime,
+tr.row-overtime td {
+  background-color: #f01010 !important;
+  color: white !important;
+}
+
+tr.row-sick,
+tr.row-sick td {
+  background-color: #00BCD4 !important;
+  /* Cyan */
+  color: white !important;
+}
+
+tr.row-sick-planned,
+tr.row-sick-planned td {
+  background-color: #8a5704 !important;
+  color: white !important;
+}
+
+tr.row-marriage,
+tr.row-marriage td {
+  background-color: #ff8c00 !important;
+  color: white !important;
+}
+
+tr.row-marriage-planned,
+tr.row-marriage-planned td {
+  background-color: #995400 !important;
+  color: white !important;
+}
+
+/* Force Comment Cell to inherit (Fix for white background issue) */
+td.comment-cell {
+  background-color: inherit !important;
+  color: inherit !important;
+}
+
+/* Ensure inputs/selects in colored rows are readable */
+tr.row-paid-taken select,
+tr.row-paid-taken input,
+tr.row-paid-planned select,
+tr.row-paid-planned input,
+tr.row-toil-taken select,
+tr.row-toil-taken input,
+tr.row-toil-planned select,
+tr.row-toil-planned input {
+  color: black;
+  background-color: white;
+}
+
+/* =============================================================================
+   SPECIFIC ROW STYLES (Strict Overrides)
+   ============================================================================= */
+/* Header Cells matching the colors */
+.header-cell.paid-taken {
+  background-color: #190be2;
+  color: white;
+}
+
+.header-cell.paid-planned {
+  background-color: #000080;
+  color: white;
+}
+
+.header-cell.toil-taken {
+  background-color: #28a745;
+  color: white;
+}
+
+.header-cell.toil-planned {
+  background-color: #006400;
+  color: white;
+}
+
+/* Calendar Individual Events */
+.individual-event.paid-taken-bg {
+  background-color: #190be2;
+  color: white;
+}
+
+.individual-event.paid-planned-bg {
+  background-color: #000080;
+  color: white;
+}
+
+.individual-event.toil-taken-bg {
+  background-color: #28a745;
+  color: white;
+}
+
+.individual-event.toil-planned-bg {
+  background-color: #006400;
+  color: white;
+}
+
+/* Keep existing for others */
+.individual-event.sick-bg {
+  background-color: #00BCD4;
+  color: white;
+}
+
+.individual-event.marriage-bg {
+  background-color: #ff8c00;
+  color: white;
+}
+
+.individual-event.overtime-bg {
+  background-color: red;
+  color: white;
+}
+
+/* Grid Toolbar Colors */
+.toolbar-btn.add-btn {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.toolbar-btn.update-btn {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.toolbar-btn.delete-btn {
+  background-color: #f8d7da;
+  color: #721c24;
+}
+
+.toolbar-btn.approve-btn {
+  background-color: #cce5ff;
+  color: #004085;
+}
+
+.header-cell.salmon-header {
+  background-color: rgb(247, 174, 166);
+  color: darkslategray;
+}
+
+.header-cell.lightblue-header {
+  background-color: #ADD8E6;
+  color: darkslategray;
+}
+
+.monthly-calendar-container {
+  width: 100%;
+  background-color: #fff;
+  flex: 1;
+  /* Grow to fill space */
+}
+
+.monthly-calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 28px;
+  padding: 0 6px;
+  background-color: #4a90e2;
+  min-width: 100%;
+}
+
+.monthly-calendar-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 1px;
+  background-color: #000;
+  width: 100%;
+}
+
+.monthly-calendar-cell.day-name {
+  background-color: #4a90e2;
+  color: #fff;
+  font-weight: bold;
+  font-size: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 22px;
+}
+
+.monthly-calendar-cell {
+  display: grid;
+  grid-template-rows: auto auto 10px 1fr;
+  padding: 2px;
+  background-color: #fff;
+  min-height: 96px;
+  height: auto;
+  border: 1px solid #ccc;
+  min-width: 0;
+  /* Crucial for grid item truncation */
+  box-sizing: border-box;
+}
+
+.monthly-calendar-cell.weekend-cell {
+  background-color: #f0f0f0;
+}
+
+.monthly-calendar-cell.holiday-cell {
+  background-color: #E6E6FA !important;
+  /* Light Purple */
+}
+
+.monthly-calendar-cell-grid {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  overflow: hidden;
+  /* Prevent overflow */
+}
+
+.monthly-calendar-cell-grid-column-slot {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px dotted #888;
+  font-size: 0.65rem;
+  /* Slightly smaller to fit more text */
+  height: 18px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 100%;
+  box-sizing: border-box;
+  padding: 0 2px;
+}
+
+/* Individual Mode */
+.monthly-calendar-cell.individual-event {
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-weight: bold;
+}
+
+.individual-event.overtime-bg {
+  background-color: red;
+}
+
+.individual-event.toil-bg {
+  background-color: #28a745;
+}
+
+.individual-event.toil-planned-bg {
+  background-color: #006400;
+  opacity: 0.7;
+}
+
+.individual-event.paid-bg {
+  background-color: #190be2;
+}
+
+.individual-event.paid-planned-bg {
+  background-color: #000080;
+}
+
+.individual-event.sick-bg {
+  background-color: #ec9408;
+}
+
+.individual-event.marriage-bg {
+  background-color: #ff8c00;
+}
+
+.individual-event.sick-planned-bg {
+  background-color: #8a5704;
+}
+
+.individual-event.marriage-planned-bg {
+  background-color: #995400;
+}
+
+/* Yearly View */
+.yearly-calendar-header-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 6px 0;
+  font-weight: bold;
+  font-size: 0.85rem;
+  color: #fff;
+  background-color: #4a90e2;
+}
+
+.yearly-calendar-slot {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding-right: 4px;
+  border-bottom: 1px dotted #888;
+  font-size: 0.7rem;
+}
+
+.yearly-calendar-slot:last-child {
+  border-bottom: none;
+}
+
+.yearly-cell {
+  font-size: 0.7rem;
+  /* Matching header-cell and typical grid size */
+  font-family: inherit;
+  /* Ensure it inherits app font like other grids */
+}
+
+/* Generic Text Color Override for Selects in Colored Cells */
+td.overtime select,
+td.toil select,
+td.paid select,
+td.sick select,
+td.marriage select {
+  color: black;
+  background: white;
+}
+
+/* High Priority Disabled Styles (Added at end for specificity) */
+button:disabled,
+.action-btn:disabled,
+.toolbar-btn:disabled,
+.row-action-btn:disabled,
+.toolbar-btn.update-btn:disabled,
+.toolbar-btn.delete-btn:disabled,
+.toolbar-btn.approve-btn:disabled {
+  opacity: 0.3 !important;
+  cursor: not-allowed !important;
+  filter: grayscale(100%) !important;
+  background-color: #e0e0e0 !important;
+  color: #aaa !important;
+  border-color: #ccc !important;
+  box-shadow: none !important;
+  pointer-events: none !important;
+}
+
+/* Grey Row for Yearly Totals */
+/* Grey Row for Yearly Totals */
+.row-grey {
+  background-color: #d0d0d0 !important;
+  color: black !important;
+}
+
+.row-grey .yearly-cell {
+  background-color: #d0d0d0 !important;
+  color: black !important;
+  border-right: 1px solid white !important;
+  /* White grid lines */
+  border-bottom: 1px solid white !important;
+}
+
+/* Ensure default cells also have white grid if requested for "grid color" */
+.yearly-cell {
+  border-right: 1px solid white !important;
+  border-bottom: 1px solid white !important;
+}
+
+/* Unapproved Event States */
+.monthly-calendar-cell-grid-column-slot.Added,
+tr.Added {
+  background-color: #fff3cd !important;
+  color: black !important;
+}
+
+.monthly-calendar-cell-grid-column-slot.Updated,
+tr.Updated {
+  background-color: #fff3cd !important;
+  color: black !important;
+}
+
+.monthly-calendar-cell-grid-column-slot.Deleted,
+tr.Deleted {
+  background-color: #fff3cd !important;
+  color: black !important;
+}

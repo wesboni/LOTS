@@ -1,0 +1,78 @@
+/* ==========================================================================
+   Global Layout & Root Configuration
+   ========================================================================== */
+#root {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  /* Center horizontally */
+  align-items: flex-start;
+  /* Align to top */
+  min-height: 100vh;
+}
+
+/* ==========================================================================
+   Login Screen Styles
+   ========================================================================== */
+.login-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  gap: 20px;
+}
+
+.login-box {
+  background-color: #f9f9f9;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  min-width: 300px;
+}
+
+.login-box h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+.login-select {
+  padding: 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.login-btn {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.login-btn:hover {
+  background-color: #0056b3;
+}
+
+.login-btn:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+/* Ensure body takes full height */
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #f0f0f0;
+  /* Optional: light background for the page */
+}
