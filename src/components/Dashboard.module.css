@@ -1,0 +1,88 @@
+/* Main Layout */
+.mainLayout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  padding: 20px 30px;
+  background-color: var(--bg-main);
+  box-sizing: border-box;
+}
+
+/* Header & Navigation */
+.viewHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+
+  /* Sticky Header */
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: var(--bg-main);
+  /* Ensure opacity so content doesn't show through */
+  padding-top: 20px;
+  /* Compensation for mainLayout padding if needed, or margin */
+  padding-bottom: 20px;
+  margin-top: -20px;
+  /* Pull up to counteract padding if mainLayout has padding... wait. */
+  /* MainLayout has padding: 20px 30px. 
+     If we stick top:0, it will stick 20px from top of viewport? No, top of containing block? 
+     It's strictly related to viewport if parent has no overflow.
+     The parent mainLayout likely scrolls (body scrolls).
+     So sticky works. 
+     To make it look good, we add padding and background.
+  */
+}
+
+.yearSelector,
+.monthSelector {
+  display: flex;
+  gap: 10px;
+  background-color: var(--bg-card);
+  padding: 5px;
+  border-radius: var(--radius-badge);
+  box-shadow: var(--shadow-sm);
+}
+
+.yearSelector button,
+.monthSelector button {
+  background: transparent;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-secondary);
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+}
+
+.yearSelector button:hover,
+.monthSelector button:hover {
+  color: var(--primary-color);
+  background-color: rgba(67, 24, 255, 0.05);
+}
+
+.active {
+  background-color: var(--primary-color) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 10px rgba(67, 24, 255, 0.4);
+}
+
+/* Dashboard Content */
+.dashboardContent {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Card Utility */
+.cardWrapper {
+  background-color: var(--bg-card);
+  border-radius: var(--radius-card);
+  padding: 24px;
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  /* Ensure content doesn't break radius */
+}

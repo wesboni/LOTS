@@ -1,0 +1,138 @@
+/* Totals.module.css - Summary Tables (Yearly & Monthly Totals) */
+
+.totalsContainer {
+    width: max-content;
+    /* Fit content, don't expand */
+    max-width: 100%;
+    margin-bottom: 24px;
+}
+
+.totalsHeader {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    /* Ensure left alignment */
+    text-align: left;
+    gap: 12px;
+    width: 100%;
+    /* Ensure it spans if container is wide */
+}
+
+.totalsTableWrapper {
+    width: auto;
+    /* Allow shrink */
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-sm);
+    background-color: var(--bg-card);
+}
+
+.totalsTable {
+    width: auto;
+    /* Fit content */
+    border-collapse: separate;
+    border-spacing: 0;
+}
+
+/* Row Layout */
+/* Row Layout */
+/* .totalsRow - default tr behavior */
+
+/* Section Header (Overtime, Paid Leave...) */
+/* .sectionHeaderRow - styling moved to cells */
+
+.sectionHeaderCell {
+    background-color: #e0e5f2;
+    color: #4a5568;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    font-weight: 700;
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--border-color);
+    letter-spacing: 0.5px;
+    border-top: 12px solid #ffffff;
+    /* White space gap */
+}
+
+/* Cells */
+.totalsCell {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    border-bottom: 1px dotted #555 !important;
+    border-right: 1px dotted #555 !important;
+    vertical-align: middle;
+    /* Removed display:flex to let table cell behave naturally, 
+       but if we need flex inside, we added wrapper divs in TSX */
+    white-space: nowrap;
+}
+
+/* White Separators for Colored Rows - Removed per request for uniform grid lines */
+.totalsRow[class*="overtime-bg"] .totalsCell,
+.totalsRow[class*="paid-taken-bg"] .totalsCell,
+.totalsRow[class*="sick-bg"] .totalsCell,
+.totalsRow[class*="marriage-bg"] .totalsCell,
+.totalsRow[class*="oncall-done-bg"] .totalsCell,
+.totalsRow[class*="oncall-planned-bg"] .totalsCell,
+.totalsRow[class*="paid-planned-bg"] .totalsCell {
+    border-right-color: #555 !important;
+    /* Force the grey border back */
+}
+
+.totalsCell:last-child {
+    border-right: none !important;
+}
+
+/* Header Cells (Labels) */
+.headerCell {
+    background-color: #e0e5f2;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    text-align: center;
+    border-right: 1px dotted #555 !important;
+    border-bottom: 1px dotted #555 !important;
+}
+
+/* Manager View Overrides */
+.managerView {
+    width: 100%;
+    max-width: none;
+}
+
+.managerView .totalsTableWrapper,
+.managerView .totalsTable {
+    width: 100%;
+}
+
+.managerView .totalsTable {
+    table-layout: fixed;
+}
+
+/* Fixed Width Columns for Manager View */
+.managerView .totalsTable th:nth-child(1) {
+    width: 40px;
+}
+
+/* Checkbox */
+.managerView .totalsTable th:nth-child(2) {
+    width: 100px;
+}
+
+/* Type */
+.managerView .totalsTable th:nth-child(3) {
+    width: 100px;
+}
+
+/* Status */
+/* Others (Employees + GrandTotal) share remaining space equally due to table-layout: fixed */
+
+.totalsRow:last-child .totalsCell {
+    border-bottom: none;
+}

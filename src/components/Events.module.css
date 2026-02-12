@@ -1,0 +1,312 @@
+/* Events Table Modern Styles */
+
+.historyRow {
+    width: 100%;
+}
+
+.historyHeader {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+    text-align: left;
+}
+
+.historyGridContainer {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.historyTable {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    min-width: 1000px;
+    /* Force scroll */
+}
+
+.tableHeadRow th {
+    background-color: #e0e5f2;
+    color: #4a5568;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px dotted #555 !important;
+    border-right: 1px dotted #555 !important;
+    white-space: nowrap;
+}
+
+.tableHeadRow th:first-child {
+    border-top-left-radius: 8px;
+}
+
+.tableHeadRow th:last-child {
+    border-right: none;
+    border-top-right-radius: 8px;
+}
+
+/* Table Body */
+.tableCell {
+    padding: 14px 16px;
+    border-bottom: 1px dotted #555 !important;
+    border-right: 1px dotted #555 !important;
+    /* Add vertical lines if needed for 'columns' */
+    color: var(--text-primary);
+    font-size: 0.85rem;
+    vertical-align: middle;
+}
+
+tr:last-child .tableCell {
+    border-bottom: none;
+}
+
+/* Situation Cell Colors (Requires !important to override row styles) */
+.sitApproved {
+    background-color: #e3f2fd !important;
+}
+
+.sitAdded {
+    background-color: #f1f8e9 !important;
+}
+
+.sitUpdated {
+    background-color: #fff9c4 !important;
+}
+
+.sitDeleted {
+    background-color: #ffcdd2 !important;
+}
+
+tbody tr {
+    transition: background-color 0.2s;
+}
+
+tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+/* Toolbar */
+.toolbarBtn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    margin-right: 12px;
+    transition: all 0.2s;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.toolbarBtn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+    box-shadow: none;
+    background-color: #e2e8f0;
+    /* Light grey */
+    color: #a0aec0;
+    /* Darker grey text */
+    filter: grayscale(100%);
+    /* Remove color */
+}
+
+.addBtn {
+    background-color: white;
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.addBtn:hover:not(:disabled) {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.addBtn:disabled {
+    background-color: white;
+    color: var(--success-color);
+    border-color: var(--success-color);
+    filter: none;
+    /* Override grayscale */
+    opacity: 0.5;
+    /* Match row actions */
+}
+
+.updateBtn {
+    background-color: white;
+    border: 1px solid var(--warning-color);
+    color: var(--warning-color);
+}
+
+.updateBtn:hover:not(:disabled) {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.updateBtn:disabled {
+    background-color: white;
+    color: var(--warning-color);
+    border-color: var(--warning-color);
+    filter: none;
+    /* Override grayscale */
+    opacity: 0.5;
+}
+
+.deleteBtn {
+    background-color: white;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+}
+
+.deleteBtn:hover:not(:disabled) {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.deleteBtn:disabled {
+    background-color: white;
+    color: var(--danger-color);
+    border-color: var(--danger-color);
+    filter: none;
+    /* Override grayscale */
+    opacity: 0.5;
+}
+
+.approveBtn {
+    background-color: white;
+    border: 1px solid var(--primary-color);
+    color: var(--primary-color);
+    border-radius: 4px;
+    box-shadow: none;
+    text-transform: none;
+}
+
+.approveBtn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.rejectBtn {
+    background-color: white;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+    border-radius: 4px;
+    box-shadow: none;
+    text-transform: none;
+}
+
+.rejectBtn:hover {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+/* Action Buttons (Row) */
+.rowActionBtn {
+    border: none;
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s;
+    font-weight: 600;
+    text-decoration: none !important;
+    /* Prevent inheritance from deleted rows */
+    font-style: normal !important;
+    display: inline-block;
+}
+
+.rowActionBtn:hover {
+    filter: brightness(1.1);
+}
+
+.commit {
+    background-color: white;
+    border: 1px solid var(--success-color);
+    color: var(--success-color);
+}
+
+.commit:hover:not(:disabled) {
+    background-color: var(--success-color);
+    color: white;
+}
+
+.commit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: white;
+    color: var(--success-color);
+    border-color: var(--success-color);
+}
+
+.rollback {
+    background-color: white;
+    border: 1px solid var(--warning-color);
+    color: var(--warning-color);
+}
+
+.rollback:hover:not(:disabled) {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.rollback:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: white;
+    border-color: var(--warning-color);
+    color: var(--warning-color);
+}
+
+.cancel {
+    background-color: white;
+    border: 1px solid var(--danger-color);
+    color: var(--danger-color);
+}
+
+.cancel:hover:not(:disabled) {
+    background-color: var(--danger-color);
+    color: white;
+}
+
+.cancel:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    background-color: white;
+    border-color: var(--danger-color);
+    color: var(--danger-color);
+}
+
+/* Inputs */
+.gridInput {
+    background: white;
+    border: 1px solid var(--border-color);
+    padding: 6px;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+.gridInput:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
+
+.addMenu {
+    display: flex;
+    flex-direction: column;
+}
+
+.addMenuItem {
+    padding: 8px 12px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #333;
+}
+
+.addMenuItem:hover {
+    background-color: #f0f0f0;
+}

@@ -1,68 +1,300 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 :root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  /* Colors */
+  --bg-main: #f4f7fe;
+  --bg-card: #ffffff;
+  --text-primary: #1b2559;
+  --text-secondary: #a3aed0;
+  --text-tertiary: #8f9bba;
+  --border-color: #e0e5f2;
+  --primary-color: #4318ff;
+  --primary-hover: #3311db;
+  --danger-color: #ee5d50;
+  --success-color: #05cd99;
+  --warning-color: #ffce20;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  /* Status Colors (Soft) */
+  --toil-bg: #e6f6ec;
+  --toil-text: #05cd99;
+  --paid-bg: #e6e9fa;
+  --paid-text: #4318ff;
+  --sick-bg: #fce8e8;
+  --sick-text: #ee5d50;
+  --marriage-bg: #fff8e6;
+  --marriage-text: #ffb547;
+  --oncall-bg: #f3e5f5;
+  --oncall-text: #9c27b0;
+  --overtime-bg: #ffebee;
+  --overtime-text: #d32f2f;
+  --bereavement-bg: #ECEFF1;
+  --bereavement-text: #455a64;
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
+  /* Dimensions */
+  --radius-card: 20px;
+  --radius-sm: 10px;
+  --radius-badge: 30px;
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
+  /* Shadows */
+  --shadow-sm: 0px 2px 5px rgba(112, 144, 176, 0.08);
+  --shadow-card: 0px 18px 40px rgba(112, 144, 176, 0.12);
 }
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  padding: 0;
+  background-color: var(--bg-main);
+  font-family: 'Inter', sans-serif;
+  color: var(--text-primary);
+  -webkit-font-smoothing: antialiased;
 }
 
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: 700;
+  color: var(--text-primary);
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
-  background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  font-family: 'Inter', sans-serif;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* =========================================
+   Universal Badges / Status Pills
+   ========================================= */
+
+/* Generic Badge Mixin Class */
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 12px;
+  border-radius: var(--radius-badge);
+  font-size: 12px;
+  font-weight: 600;
+  min-width: 80px;
+}
+
+/* Specific Status Mappings */
+/* Specific Status Mappings */
+.toil,
+.toil-taken-bg,
+.toil-taken-bg td,
+td.toil-taken-bg {
+  background-color: var(--toil-bg) !important;
+  color: var(--toil-text) !important;
+  /* border: removed to standardise grid lines */
+}
+
+.paid,
+.paid-taken-bg,
+.paid-taken-bg td,
+td.paid-taken-bg {
+  background-color: var(--paid-bg) !important;
+  color: var(--paid-text) !important;
+  /* border: removed to standardise grid lines */
+}
+
+.sick,
+.sick-bg,
+.sick-bg td,
+td.sick-bg {
+  background-color: var(--sick-bg) !important;
+  color: var(--sick-text) !important;
+  /* border: removed to standardise grid lines */
+}
+
+.marriage,
+.marriage-bg,
+.marriage-bg td,
+td.marriage-bg {
+  background-color: var(--marriage-bg) !important;
+  color: var(--marriage-text) !important;
+  /* border: removed to standardise grid lines */
+}
+
+.oncall,
+.oncall-done,
+.oncall-done-bg,
+.oncall-done-bg td,
+td.oncall-done {
+  background-color: var(--oncall-bg) !important;
+  color: var(--oncall-text) !important;
+  /* border: removed to standardise grid lines */
+}
+
+.overtime,
+.overtime-bg,
+.overtime-bg td,
+td.overtime,
+td.overtime-bg {
+  background-color: var(--overtime-bg) !important;
+  color: var(--overtime-text) !important;
+  /* border: removed to standardise grid lines */
+}
+
+.bereavement,
+.bereavement-bg,
+.bereavement-bg td,
+td.bereavement,
+td.bereavement-bg {
+  background-color: var(--bereavement-bg) !important;
+  color: var(--bereavement-text) !important;
+}
+
+/* Planned */
+.toil-planned,
+.toil-planned-bg,
+.toil-planned-bg td {
+  background-color: #fff;
+  /* border: removed */
+  color: var(--toil-text) !important;
+}
+
+.paid-planned,
+.paid-planned-bg,
+.paid-planned-bg td {
+  background-color: #fff;
+  /* border: removed */
+  color: var(--paid-text) !important;
+}
+
+.marriage-planned,
+.marriage-planned-bg,
+.marriage-planned-bg td {
+  background-color: #fff;
+  /* border: removed */
+  color: var(--marriage-text) !important;
+}
+
+.oncall-planned,
+.oncall-planned-bg,
+.oncall-planned-bg td {
+  background-color: #fff;
+  /* border: removed */
+  color: var(--oncall-text) !important;
+}
+
+/* =========================================
+   Table Row Highlights (Full Width)
+   Use softer, more modern highlights
+   ========================================= */
+
+/* =========================================
+   Table Row & Calendar Slot Highlights
+   ========================================= */
+
+/* Added / Updated: Use standard Type colors, but add text styling */
+
+.bold-italic,
+.bold-italic td {
+  font-weight: 700 !important;
+  font-style: italic !important;
+}
+
+/* Specific styling for Calendar Slots (Chips) */
+.slot.Added {
+  font-weight: 700;
+  font-style: italic;
+  border: 1px dotted #333;
+}
+
+.slot.Updated {
+  font-weight: 700;
+  font-style: italic;
+  border: 1px dotted #333;
+}
+
+/* GLOBAL SITUATION COLUMN OVERRIDES - HIGH SPECIFICITY */
+/* Moved to bottom of file */
+
+/* Deleted: Light Red + Dark Red Dotted + Strikethrough */
+
+/* Deleted: Light Red + Dark Red Dotted + Strikethrough */
+/* Deleted: Type Color + Dark Red Dotted + Strikethrough */
+.Deleted,
+.row-deleted {
+  /* No text-decoration here to allow cells to opt-out */
+  /* background-color: inherited */
+  opacity: 0.8;
+  color: var(--text-primary);
+}
+
+/* Apply strikethrough/italic to CELLS, unless overridden */
+tr.Deleted td,
+tr.row-deleted td {
+  border-bottom: 1px dotted #c62828 !important;
+  /* Dark Red */
+  border-right: 1px dotted #c62828 !important;
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+.slot.Deleted {
+  border: 1px dotted #c62828 !important;
+  /* background-color: inherited */
+  text-decoration: line-through;
+}
+
+/* =========================================
+   Global Grid Input (Clean)
+   ========================================= */
+input,
+select {
+  background-color: transparent;
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  padding: 6px 10px;
+  color: var(--text-primary);
+  font-family: inherit;
+}
+
+input:focus,
+select:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 2px rgba(67, 24, 255, 0.1);
+}
+
+/* =========================================
+   GLOBAL SITUATION COLUMN OVERRIDES - SUPER HIGH SPECIFICITY
+   Placed at end to ensure overwrite
+   ========================================= */
+
+/* Use table tbody tr td to override generic tr td rules */
+html body table tbody tr td.situation-Added {
+  background-color: #f1f8e9 !important;
+  color: #1b2559 !important;
+  text-decoration: none !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+}
+
+html body table tbody tr td.situation-Updated {
+  background-color: #fff9c4 !important;
+  color: #1b2559 !important;
+  text-decoration: none !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+}
+
+html body table tbody tr td.situation-Deleted {
+  background-color: #ffcdd2 !important;
+  color: #1b2559 !important;
+  text-decoration: none !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+}
+
+html body table tbody tr td.situation-Approved {
+  background-color: #e3f2fd !important;
+  color: #1b2559 !important;
+  text-decoration: none !important;
+  font-style: normal !important;
+  font-weight: normal !important;
 }

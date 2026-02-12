@@ -1,0 +1,158 @@
+/* Calendar.module.css - Visual Grid Styles */
+
+.calendarGridSection {
+  width: 100%;
+}
+
+.calendarGridContainer {
+  width: 100%;
+}
+
+/* Grid Layout */
+.calendarGrid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  width: 100%;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  background-color: var(--bg-card);
+}
+
+/* Header Cells (Days) */
+.calendarGridCell.dayName {
+  background-color: #e0e5f2;
+  color: #4a5568;
+  font-weight: 600;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  min-height: auto;
+  padding: 8px 0;
+  /* Smaller height */
+  border-bottom: 1px dashed #a0aec0 !important;
+  border-right: 1px dashed #a0aec0 !important;
+}
+
+.calendarGridCell.dayName:last-child {
+  border-right: none !important;
+}
+
+.calendarHeader {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 16px;
+  text-align: left;
+  width: 100%;
+}
+
+/* Date Cells */
+.calendarGridCell {
+  display: flex;
+  flex-direction: column;
+  padding: 8px;
+  background-color: var(--bg-card);
+  min-height: 120px;
+  height: auto;
+  border-right: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
+  position: relative;
+  transition: background-color 0.2s;
+}
+
+.calendarGridCell:nth-child(7n) {
+  border-right: none;
+}
+
+.weekendCell {
+  background-color: #fafbfc;
+}
+
+.holidayCell {
+  background-color: #f3e5f5 !important;
+}
+
+.empty {
+  background-color: #fcfcfc;
+}
+
+/* Date number */
+.calendarGridCell>div:first-child {
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-primary);
+  margin-bottom: 4px;
+}
+
+/* Holiday Text */
+.calendarGridCell>div:nth-child(2) {
+  font-size: 0.7rem;
+  color: var(--danger-color);
+  font-weight: 500;
+  margin-bottom: 6px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Event Slots (Chips) */
+.slotList {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 100%;
+}
+
+.slot {
+  display: flex;
+  align-items: center;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 0.7rem;
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  transition: filter 0.2s;
+  height: 24px;
+}
+
+.slot:hover {
+  filter: brightness(0.95);
+}
+
+/* Status Indicator Dot */
+.statusDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 6px;
+  flex-shrink: 0;
+  display: inline-block;
+}
+
+.statusApproved {
+  background-color: #2196f3;
+  /* Blue */
+}
+
+.statusAdded {
+  background-color: #4caf50;
+  /* Green */
+}
+
+.statusUpdated {
+  background-color: #ffeb3b;
+  /* Yellow */
+}
+
+.statusDeleted {
+  background-color: #f44336;
+  /* Red */
+}

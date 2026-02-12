@@ -8,3 +8,14 @@ coverage
 back_up
 debugs
 *.log
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Backup and Debug
+backup/
+debug/

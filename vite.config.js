@@ -1,5 +1,6 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import fs from 'fs';
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -7,27 +8,27 @@ export default defineConfig({
   server: {
     host: true, // Allow network access
     https: {
-      pfx: './certs/server.pfx',
-      passphrase: 'password'
+      key: fs.readFileSync('./certs/key.pem'),
+      cert: fs.readFileSync('./certs/cert.pem'),
     },
     proxy: {
       '/api': {
-        target: 'https://localhost:3001',
+        target: 'https://localhost:8000',
         changeOrigin: true,
-        secure: false,
+        secure: false, // Accept self-signed backend cert
       },
       '/auth': {
-        target: 'https://localhost:3001',
+        target: 'https://localhost:8000',
         changeOrigin: true,
         secure: false,
       },
       '/login': {
-        target: 'https://localhost:3001',
+        target: 'https://localhost:8000',
         changeOrigin: true,
         secure: false,
       },
       '/logout': {
-        target: 'https://localhost:3001',
+        target: 'https://localhost:8000',
         changeOrigin: true,
         secure: false,
       },
